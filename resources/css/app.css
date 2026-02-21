@@ -1,0 +1,1195 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --screen-green: #4aff4a;
+  --text-screen: #c8ffce;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6b72ff 0%, #5b62ff 50%, #8b6fff 100%);
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+/* ───────── CONSOLE SHELL ───────── */
+
+.console {
+  width: min(560px, 95vw);   /* ← DIPERBESAR */
+  background: linear-gradient(170deg, #dcdce8 0%, #c4c4d4 60%, #b8b8cc 100%);
+  border-radius: 22px 22px 70% 70% / 22px 22px 40px 40px;
+  padding: 22px 22px 36px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.45),
+    inset 0 2px 4px rgba(255,255,255,.7),
+    inset 0 -2px 6px rgba(0,0,0,.15);
+  position: relative;
+}
+
+/* ───────── TOP BAR ───────── */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.power-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff4444;
+  box-shadow: 0 0 10px #ff4444;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+.power-label {
+  font-size: 8px;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+.brand-name {
+  margin-left: auto;
+  font-size: 9px;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+/* ───────── SCREEN ───────── */
+
+.screen-wrap {
+  background: #1a1a2a;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 20px;
+  box-shadow:
+    inset 0 6px 16px rgba(0,0,0,.6),
+    0 4px 8px rgba(0,0,0,.3);
+}
+
+.screen-label {
+  font-size: 7px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.screen {
+  background: #0a1f0e;
+  border-radius: 8px;
+  min-height: 260px;      /* lebih tinggi */
+  padding: 20px;
+  position: relative;
+  overflow: visible;      /* ← jangan hidden */
+}
+
+/* scanlines */
+.screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,.12) 2px,
+    rgba(0,0,0,.12) 4px
+  );
+  pointer-events: none;
+}
+
+.screen-content {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.screen-left {
+  width: 45%;
+}
+
+.screen-right {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bday-title {
+  font-size: 26px;   /* ← DIPERBESAR */
+  color: var(--screen-green);
+  text-shadow: 0 0 20px rgba(74,255,74,.7);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.bday-sub {
+  font-size: 10px;   /* ← DIPERBESAR */
+  color: var(--text-screen);
+  animation: blink 1.2s step-end infinite;
+}
+
+/* ───────── BATTERY ───────── */
+
+.battery-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.battery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff4444;
+  box-shadow: 0 0 6px #ff4444;
+}
+
+.battery-label {
+  font-size: 7px;
+  color: #888;
+}
+
+/* ───────── MENU BUTTONS ───────── */
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.btn {
+  padding: 16px 12px;   /* ← DIPERBESAR */
+  border-radius: 10px;
+  font-size: 11px;      /* ← DIPERBESAR */
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .1s, filter .1s;
+  box-shadow: 0 6px 0 rgba(0,0,0,.3);
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0,0,0,.3);
+}
+
+.btn:hover { filter: brightness(1.15); }
+
+.btn-blue   { background: linear-gradient(180deg, #5ba0ff, #3a6fff); }
+.btn-red    { background: linear-gradient(180deg, #ff6060, #e62020); }
+.btn-purple { background: linear-gradient(180deg, #b060ff, #8020e6); }
+.btn-green  { background: linear-gradient(180deg, #60d060, #28a028); }
+
+/* ───────── CONTROLS ───────── */
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 24px;
+}
+
+.dpad {
+  position: relative;
+  width: 110px;   /* ← DIPERBESAR */
+  height: 110px;
+}
+
+.dpad-h, .dpad-v {
+  position: absolute;
+  background: #2a2a3a;
+  border-radius: 6px;
+}
+
+.dpad-h {
+  width: 100%;
+  height: 34%;
+  top: 33%;
+}
+
+.dpad-v {
+  width: 34%;
+  height: 100%;
+  left: 33%;
+}
+
+.dpad-center {
+  position: absolute;
+  width: 34%;
+  height: 34%;
+  top: 33%;
+  left: 33%;
+  background: #3a3a4a;
+}
+
+/* A/B buttons */
+
+.ab-wrap {
+  display: flex;
+  gap: 20px;
+}
+
+.ab-btn {
+  width: 50px;   /* ← DIPERBESAR */
+  height: 50px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: transform .1s;
+  box-shadow: 0 6px 0 rgba(0,0,0,.3);
+}
+
+.ab-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0,0,0,.3);
+}
+
+.btn-b, .btn-a {
+  background: linear-gradient(180deg, #ff6060, #cc2020);
+}
+
+/* ───────── SELECT / START ───────── */
+
+.bottom-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.small-btn-wrap {
+  display: flex;
+  gap: 40px;
+}
+
+.small-btn {
+  background: #9090a0;
+  border-radius: 16px;
+  padding: 8px 24px;
+  font-size: 8px;
+  cursor: pointer;
+  border: none;
+  transition: transform .1s;
+}
+
+.small-btn:active {
+  transform: scale(.95);
+}
+
+/* Override body khusus halaman loading */
+body.loading-page {
+  background: radial-gradient(ellipse at 40% 30%, #1a2a1a 0%, #050f05 50%, #000a00 100%);
+  overflow: hidden;
+}
+
+/* ───────── LOADING SCREEN ───────── */
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* ───────── STARS ───────── */
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: .8; }
+}
+
+/* ───────── TERMINAL BOX ───────── */
+
+.terminal-box {
+  position: relative;
+  z-index: 10;
+  width: min(320px, 88vw);
+  border: 2px solid #4aff4a;
+  border-radius: 8px;
+  padding: 24px 28px;
+  background: rgba(0, 12, 0, 0.6);
+  backdrop-filter: blur(4px);
+  box-shadow:
+    0 0 20px rgba(74, 255, 74, .35),
+    0 0 60px rgba(74, 255, 74, .12),
+    inset 0 0 30px rgba(74, 255, 74, .04);
+}
+
+.terminal-title {
+  font-size: 16px;
+  color: #4aff4a;
+  text-shadow:
+    0 0 12px rgba(74, 255, 74, .8),
+    0 0 30px rgba(74, 255, 74, .4);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.terminal-prompt {
+  font-size: 10px;
+  color: #4aff4a;
+  text-shadow: 0 0 8px rgba(74, 255, 74, .6);
+  margin-bottom: 16px;
+}
+
+.cursor {
+  animation: blink-cur .7s step-end infinite;
+}
+
+@keyframes blink-cur {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ───────── PROGRESS BAR ───────── */
+
+.progress-wrap {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background: rgba(74, 255, 74, .1);
+  border: 1px solid rgba(74, 255, 74, .4);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #28a028, #7cff7c, #b7ffb4);
+  box-shadow: 0 0 14px rgba(124, 255, 124, .6);
+  transition: width .15s ease;
+  border-radius: 4px;
+}
+
+.progress-pct {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0,0,0,.8);
+  mix-blend-mode: difference;
+}
+
+/* ───────── SMILE ───────── */
+
+.terminal-smile {
+  text-align: center;
+  font-size: 13px;
+  color: #ffdd44;
+  text-shadow:
+    0 0 12px rgba(255, 221, 68, .8),
+    0 0 30px rgba(255, 221, 68, .4);
+  opacity: 0;
+  transition: opacity .4s ease;
+  letter-spacing: 2px;
+}
+
+/* Screen lebih tinggi untuk message */
+.msg-screen {
+  min-height: 340px !important;
+  padding: 16px 18px !important;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(74,255,74,.4) transparent;
+}
+.msg-screen::-webkit-scrollbar { width: 4px; }
+.msg-screen::-webkit-scrollbar-thumb { background: rgba(74,255,74,.4); border-radius: 4px; }
+
+.msg-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: #4aff4a;
+  text-shadow: 0 0 16px rgba(74,255,74,.7);
+  text-align: center;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.msg-body {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #c8ffce;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  flex: 1;
+}
+
+/* SKIP button inside screen */
+.skip-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  flex-shrink: 0;
+}
+
+.skip-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #fff;
+  background: rgba(74,255,74,.15);
+  border: 2px solid rgba(74,255,74,.6);
+  border-radius: 8px;
+  padding: 10px 28px;
+  cursor: pointer;
+  box-shadow:
+    0 0 12px rgba(74,255,74,.3),
+    inset 0 0 8px rgba(74,255,74,.1);
+  transition: transform .08s, background .15s;
+}
+.skip-btn:hover  { background: rgba(74,255,74,.25); }
+.skip-btn:active { transform: translateY(2px); }
+
+/* ── Bottom action buttons ── */
+.action-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.action-btn {
+  display: block;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 12px;
+  cursor: pointer;
+  transition: transform .08s, filter .1s;
+}
+.action-btn:active { transform: translateY(3px); }
+.action-btn:hover  { filter: brightness(1.15); }
+
+.action-next {
+  background: linear-gradient(180deg, #60d060, #28a028);
+  box-shadow: 0 5px 0 #0a5000, 0 8px 16px rgba(0,0,0,.25);
+}
+
+.action-back {
+  background: linear-gradient(180deg, #ff6060, #e62020);
+  box-shadow: 0 5px 0 #900000, 0 8px 16px rgba(0,0,0,.25);
+}
+
+/* ── Tab row ── */
+.tab-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tab-btn {
+  flex: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  padding: 10px 6px;
+  border-radius: 8px;
+  border: 2px solid rgba(124,255,122,.3);
+  background: rgba(7,29,19,.4);
+  color: #c8ffce;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+
+.tab-btn.active {
+  background: rgba(74,255,74,.15);
+  border-color: rgba(74,255,74,.7);
+  color: #4aff4a;
+  text-shadow: 0 0 8px rgba(74,255,74,.5);
+}
+
+/* ── Photobox screen ── */
+.photobox-screen {
+  min-height: 360px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d1f3c !important;   /* dark navy like the photo */
+}
+
+/* Idle state */
+.photobox-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.photobox-idle-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #c8d8ff;
+  line-height: 1.8;
+}
+
+.mulai-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #fff;
+  background: linear-gradient(180deg, #ff6060, #e62020);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #900000, 0 8px 16px rgba(0,0,0,.3);
+  transition: transform .08s;
+}
+.mulai-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #900000; }
+
+/* Polaroid viewer */
+.photobox-viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 12px 0;
+}
+
+/* Polaroid card */
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 28px;
+  border-radius: 2px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  width: min(200px, 72vw);
+  transform-origin: center top;
+}
+
+@keyframes print-drop {
+  0%   { opacity: 0; transform: translateY(-20px) scale(.95); }
+  60%  { transform: translateY(4px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.print-anim { animation: print-drop .35s ease forwards; }
+
+.polaroid-img-wrap {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #222;
+}
+
+.polaroid-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.polaroid-date {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #555;
+  text-align: center;
+  margin-top: 8px;
+  background: #ffdd44;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.polaroid-dots {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  margin-top: 6px;
+}
+
+.pdot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+/* Nav controls */
+.photobox-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: #4aff4a;
+  background: rgba(74,255,74,.1);
+  border: 2px solid rgba(74,255,74,.4);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background .1s, transform .08s;
+}
+.nav-btn:hover  { background: rgba(74,255,74,.2); }
+.nav-btn:active { transform: scale(.95); }
+
+.nav-count {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #c8ffce;
+}
+
+/* ── Clip Dump screen ── */
+.clip-screen-wrap {
+  /* yellow border like the photo */
+}
+
+.clip-screen {
+  min-height: 200px !important;
+  padding: 16px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 3px solid #ffdd44 !important;
+  border-radius: 10px;
+  background: #111 !important;
+}
+
+.clip-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  color: #ffdd44;
+  text-shadow: 0 0 10px rgba(255,221,68,.6);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.clip-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.clip-video {
+  width: 100%;
+  border-radius: 4px;
+  background: #000;
+  border: 1px solid rgba(255,221,68,.3);
+}
+
+.clip-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #ffdd44;
+  opacity: .7;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════
+   MUSIC PAGE — tambahkan ke app.css
+   ══════════════════════════════════════ */
+
+.music-screen {
+  min-height: 200px !important;
+  padding: 14px 16px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(74,255,74,.4) transparent;
+}
+.music-screen::-webkit-scrollbar { width: 4px; }
+.music-screen::-webkit-scrollbar-thumb { background: rgba(74,255,74,.4); border-radius: 4px; }
+
+/* ── Album art / vinyl ── */
+.album-art {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.album-vinyl {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #111 60%, #333);
+  border: 3px solid #444;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px rgba(74,255,74,.2), 0 4px 16px rgba(0,0,0,.5);
+  position: relative;
+}
+
+.vinyl-inner {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #666, #333);
+  border: 2px solid #555;
+  box-shadow: 0 0 6px rgba(74,255,74,.3);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.album-vinyl.spinning {
+  animation: spin 3s linear infinite;
+}
+
+/* ── Song info ── */
+.song-info { text-align: center; }
+
+.song-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #4aff4a;
+  text-shadow: 0 0 10px rgba(74,255,74,.6);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.song-artist {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #c8ffce;
+  opacity: .85;
+}
+
+/* ── Progress ── */
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #7cffce;
+  white-space: nowrap;
+  min-width: 32px;
+}
+
+.music-progress {
+  flex: 1;
+  height: 8px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(74,255,74,.3);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+}
+
+.music-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #28a028, #7cff7c);
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(74,255,74,.5);
+  pointer-events: none;
+}
+
+.music-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(74,255,74,.6);
+  pointer-events: none;
+}
+
+/* ── Visualizer ── */
+.visualizer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 30px;
+  opacity: .4;
+  transition: opacity .3s;
+}
+.visualizer.active { opacity: 1; }
+
+.vis-bar {
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(180deg, #4aff4a, #28a028);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 0 4px rgba(74,255,74,.4);
+}
+.visualizer.active .vis-bar {
+  animation: vis-dance .6s ease-in-out infinite alternate;
+}
+@keyframes vis-dance {
+  from { height: 4px; }
+  to   { height: calc(4px + var(--h, 20px)); }
+}
+/* vary heights */
+.vis-bar:nth-child(1)  { --h: 8px; }
+.vis-bar:nth-child(2)  { --h: 18px; }
+.vis-bar:nth-child(3)  { --h: 12px; }
+.vis-bar:nth-child(4)  { --h: 24px; }
+.vis-bar:nth-child(5)  { --h: 14px; }
+.vis-bar:nth-child(6)  { --h: 22px; }
+.vis-bar:nth-child(7)  { --h: 10px; }
+.vis-bar:nth-child(8)  { --h: 20px; }
+.vis-bar:nth-child(9)  { --h: 16px; }
+.vis-bar:nth-child(10) { --h: 26px; }
+.vis-bar:nth-child(11) { --h: 18px; }
+.vis-bar:nth-child(12) { --h: 22px; }
+.vis-bar:nth-child(13) { --h: 14px; }
+.vis-bar:nth-child(14) { --h: 20px; }
+.vis-bar:nth-child(15) { --h: 10px; }
+.vis-bar:nth-child(16) { --h: 24px; }
+.vis-bar:nth-child(17) { --h: 12px; }
+.vis-bar:nth-child(18) { --h: 18px; }
+.vis-bar:nth-child(19) { --h: 8px; }
+.vis-bar:nth-child(20) { --h: 16px; }
+
+/* ── Controls ── */
+.music-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.ctrl-btn {
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .08s, filter .1s;
+  display: flex; align-items: center; justify-content: center;
+  font-family: monospace;
+}
+.ctrl-btn:active { transform: scale(.94); }
+.ctrl-btn:hover  { filter: brightness(1.15); }
+
+.ctrl-prev, .ctrl-next {
+  background: linear-gradient(180deg, #00d4ff, #0099cc);
+  color: #fff;
+  padding: 10px 18px;
+  box-shadow: 0 4px 0 #006688;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.ctrl-play {
+  background: linear-gradient(180deg, #00d4ff, #0099cc);
+  color: #fff;
+  padding: 10px 36px;
+  box-shadow: 0 4px 0 #006688;
+  font-size: 18px;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 140px;
+}
+
+/* ── Volume ── */
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vol-btn {
+  font-size: 14px;
+  background: rgba(0,212,255,.15);
+  border: 1px solid rgba(0,212,255,.4);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: #fff;
+  transition: background .1s;
+}
+.vol-btn:hover { background: rgba(0,212,255,.3); }
+
+.vol-slider {
+  flex: 1;
+  accent-color: #00d4ff;
+  height: 4px;
+  cursor: pointer;
+}
+
+/* ── Playlist ── */
+.playlist-section {
+  margin-top: 4px;
+  border-top: 1px solid rgba(74,255,74,.25);
+  padding-top: 8px;
+}
+
+.playlist-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #ffdd44;
+  text-shadow: 0 0 8px rgba(255,221,68,.5);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.pl-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .12s;
+  margin-bottom: 3px;
+}
+.pl-item:hover    { background: rgba(74,255,74,.1); }
+.pl-item.pl-active {
+  background: rgba(74,255,74,.18);
+  border-left: 3px solid #4aff4a;
+}
+
+.pl-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #7cffce;
+  min-width: 18px;
+}
+
+.pl-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #c8ffce;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.pl-active .pl-name { color: #4aff4a; }
+
+.pl-dur {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #7cffce;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════
+   TETRIS PAGE — tambahkan ke app.css
+   ══════════════════════════════════════ */
+
+.tetris-screen {
+  padding: 10px 12px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 0 !important;
+  background: #050f1a !important;
+}
+
+/* ── Header ── */
+.tetris-header { width: 100%; }
+
+.tetris-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: #44ddff;
+  text-shadow: 0 0 14px rgba(68,221,255,.7), 0 0 30px rgba(68,221,255,.3);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.tetris-stats {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #ffdd44;
+  margin-bottom: 2px;
+}
+.tetris-stats b { color: #fff; }
+
+/* ── Canvas ── */
+.canvas-wrap {
+  border: 2px solid rgba(68,221,255,.4);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow:
+    0 0 16px rgba(68,221,255,.2),
+    inset 0 0 20px rgba(0,0,0,.5);
+}
+
+#cv {
+  display: block;
+  background: #050f1a;
+}
+
+/* ── Controls ── */
+.tetris-controls {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.tctrl-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #fff;
+  background: linear-gradient(180deg, #44aaff, #2266cc);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #114499;
+  transition: transform .08s;
+  user-select: none;
+  -webkit-user-select: none;
+  flex: 1;
+}
+.tctrl-rotate { flex: 2; }
+.tctrl-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #114499;
+}
+
+.tetris-hint {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  color: rgba(200,255,220,.4);
+  text-align: center;
+}
+
+/* ── Popups ── */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.popup-box {
+  border: 3px solid #4aff4a;
+  border-radius: 8px;
+  padding: 28px 24px;
+  text-align: center;
+  background: #0a1f0e;
+  box-shadow:
+    0 0 30px rgba(74,255,74,.4),
+    0 0 60px rgba(74,255,74,.15);
+  width: min(280px, 90vw);
+  animation: popup-in .25s ease;
+}
+
+@keyframes popup-in {
+  from { transform: scale(.8); opacity: 0; }
+  to   { transform: scale(1);  opacity: 1; }
+}
+
+/* GAME OVER */
+.popup-go-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 32px;
+  color: #ff4444;
+  text-shadow: 0 0 16px rgba(255,68,68,.7);
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.popup-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: transform .08s, filter .1s;
+}
+.popup-btn:active { transform: translateY(2px); }
+.popup-btn:hover  { filter: brightness(1.15); }
+
+.popup-confirm-btn {
+  background: linear-gradient(180deg, #44aaff, #2266cc);
+  box-shadow: 0 4px 0 #0033aa;
+}
+
+/* LOVE message */
+.popup-love-box {
+  background: #071a0e;
+}
+
+.popup-love-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: #ffdd44;
+  text-shadow: 0 0 12px rgba(255,221,68,.7);
+  margin-bottom: 14px;
+}
+
+.popup-love-body {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #4aff4a;
+  line-height: 2;
+  margin-bottom: 14px;
+}
+
+.popup-love-heart {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #ff88cc;
+  text-shadow: 0 0 10px rgba(255,136,204,.6);
+  margin-bottom: 20px;
+}
+
+.popup-ok-btn {
+  background: linear-gradient(180deg, #44aaff, #2266cc);
+  box-shadow: 0 4px 0 #0033aa;
+}
