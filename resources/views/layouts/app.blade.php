@@ -7,6 +7,7 @@
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body>
+  <body class="@yield('body-class')"></body>
   <main class="wrap">
     <div class="console">
       <div class="screen">

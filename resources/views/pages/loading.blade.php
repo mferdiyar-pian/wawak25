@@ -2,6 +2,16 @@
 @section('title','Loading...')
 
 @section('content')
+
+<body style="
+  min-height:100vh;
+  background:url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+"></body>
+
 <div class="loading-screen">
   {{-- Stars background --}}
   <div class="stars" id="stars"></div>

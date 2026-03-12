@@ -3,6 +3,15 @@
 
 @section('content')
 
+<body style="
+  min-height:100vh;
+  background:url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+"></body>
+
 {{-- Top bar --}}
 <div class="topbar">
   <div class="power-dot"></div>
@@ -16,11 +25,13 @@
   <div class="screen music-screen">
 
     {{-- Album art --}}
-    <div class="album-art" id="album-art">
-      <div class="album-vinyl" id="vinyl">
-        <div class="vinyl-inner"></div>
-      </div>
+<div class="album-art" id="album-art">
+  <div class="album-vinyl-wrap">
+    <div class="album-vinyl" id="vinyl">
+      <div class="vinyl-inner"></div>
     </div>
+  </div>
+</div>
 
     {{-- Song info --}}
     <div class="song-info">
@@ -82,13 +93,31 @@
 
 <script>
 const playlist = [
-  { title: "On Bended Knee",               artist: "Boyz II Men",  src: "{{ asset('music/1.mp3') }}", dur: "5:26" },
-  { title: "(Everything I Do) I Do It For You", artist: "Bryan Adams", src: "{{ asset('music/2.mp3') }}", dur: "6:32" },
-  { title: "Just the Two of Us",            artist: "Bill Withers", src: "{{ asset('music/3.mp3') }}", dur: "7:18" },
-  { title: "Nothing's Gonna Change My Love For You", artist: "Glenn Medeiros", src: "{{ asset('music/4.mp3') }}", dur: "3:52" },
-  { title: "How Deep Is Your Love",         artist: "Bee Gees",    src: "{{ asset('music/5.mp3') }}", dur: "3:58" },
+  { 
+    title: "Waking Up Together With You",
+    artist: "Kahitna",
+    src: "{{ asset('lagu/1.mp3') }}",
+    cover: "{{ asset('images/album/1.jpg') }}"
+  },
+  { 
+    title: "Last Night On Earth",
+    artist: "Green Day",
+    src: "{{ asset('lagu/2.mp3') }}",
+    cover: "{{ asset('images/album/2.jpg') }}"
+  },
+  { 
+    title: "Pelangi",
+    artist: "Hivi",
+    src: "{{ asset('lagu/3.mp3') }}",
+    cover: "{{ asset('images/album/3.jpg') }}"
+  },
+  { 
+    title: "Soulmate",
+    artist: "Kahitna",
+    src: "{{ asset('lagu/4.mp3') }}",
+    cover: "{{ asset('images/album/1.png') }}"
+  }
 ];
-
 let idx = 0;
 let muted = false;
 const audio   = document.getElementById('audio');
@@ -112,15 +141,27 @@ function buildPlaylist() {
 function loadSong(i, autoplay = false) {
   idx = i;
   const s = playlist[idx];
+
   audio.src = s.src;
+
   document.getElementById('song-title').textContent  = s.title;
   document.getElementById('song-artist').textContent = s.artist;
+
+  // 🔥 Tambahkan ini
+  document.getElementById('album-art').style.backgroundImage = `url(${s.cover})`;
+  document.getElementById('album-art').style.backgroundSize = 'cover';
+  document.getElementById('album-art').style.backgroundPosition = 'center';
+
   document.getElementById('music-bar').style.width   = '0%';
   document.getElementById('music-thumb').style.left  = '0%';
   document.getElementById('time-cur').textContent    = '0:00';
-  document.getElementById('time-dur').textContent    = s.dur;
+
   buildPlaylist();
-  if (autoplay) { audio.play(); setPlaying(true); }
+
+  if (autoplay) {
+    audio.play();
+    setPlaying(true);
+  }
 }
 
 // ── Play / pause ──

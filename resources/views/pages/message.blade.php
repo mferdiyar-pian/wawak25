@@ -3,6 +3,15 @@
 
 @section('content')
 
+<body style="
+  min-height:100vh;
+  background:url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+"></body>
+
 {{-- Top bar --}}
 <div class="topbar">
   <div class="power-dot"></div>
