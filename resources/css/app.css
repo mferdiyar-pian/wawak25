@@ -1210,3 +1210,80 @@ body.loading-page {
   background: linear-gradient(180deg, #44aaff, #2266cc);
   box-shadow: 0 4px 0 #0033aa;
 }
+
+/* ══════════════════════════════════════
+   D-PAD FUNCTIONAL — tambahkan ke app.css
+   ══════════════════════════════════════ */
+
+/* ── D-pad arrows ── */
+.dpad { position: relative; cursor: pointer; user-select: none; -webkit-user-select: none; }
+
+.dpad-arrow {
+  position: absolute;
+  font-size: 8px;
+  color: rgba(255,255,255,.4);
+  pointer-events: none;
+  z-index: 2;
+  line-height: 1;
+}
+.dpad-arrow-up    { top: 4px;  left: 50%; transform: translateX(-50%); }
+.dpad-arrow-down  { bottom: 4px; left: 50%; transform: translateX(-50%); }
+.dpad-arrow-left  { left: 4px; top: 50%; transform: translateY(-50%); }
+.dpad-arrow-right { right: 4px; top: 50%; transform: translateY(-50%); }
+
+/* ── D-pad press feedback ── */
+.dpad-h, .dpad-v { transition: background .08s; }
+.dpad:active .dpad-h,
+.dpad:active .dpad-v { background: #3a3a5a; }
+
+/* ── Ripple ── */
+@keyframes dpad-ripple {
+  0%   { transform: translate(-50%,-50%) scale(0); opacity: .5; }
+  100% { transform: translate(-50%,-50%) scale(3); opacity: 0; }
+}
+.dpad-ripple {
+  position: absolute;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  pointer-events: none;
+  animation: dpad-ripple .32s ease-out forwards;
+  z-index: 5;
+}
+
+/* ── Menu focus (d-pad highlight) ── */
+.btn-grid .btn.dpad-focus {
+  outline: 3px solid rgba(255,255,255,.85);
+  outline-offset: 2px;
+  filter: brightness(1.25);
+  transform: scale(1.05);
+  transition: transform .1s, filter .1s, outline .1s;
+  z-index: 1;
+}
+
+/* ── Pressed flash ── */
+.btn-grid .btn.dpad-pressed {
+  transform: translateY(4px) scale(.96) !important;
+  filter: brightness(1.5) !important;
+}
+
+/* ── A/B labels ── */
+.ab-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 0 2px;
+}
+.ab-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 5px;
+  color: rgba(255,255,255,.35);
+  flex: 1;
+  text-align: center;
+}
+
+/* ── A/B hover/active ── */
+.ab-btn { transition: transform .08s, box-shadow .08s, filter .08s; }
+.ab-btn:hover  { filter: brightness(1.2); }
+.ab-btn:active { transform: translateY(4px) !important; box-shadow: 0 1px 0 #7a0000 !important; filter: brightness(1.4); }

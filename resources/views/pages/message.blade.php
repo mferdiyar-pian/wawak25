@@ -21,7 +21,7 @@
 
 {{-- Screen --}}
 <div class="screen-wrap">
-  <div class="screen-label">DOT MATRIX WITH STEREO SOUND</div>
+  <div class="screen-label">IKAN HIU MAKAN TOMAT ILOVE SOMAT</div>
   <div class="screen msg-screen">
     <div class="msg-title">Message</div>
     <div id="msg-box" class="msg-body"></div>

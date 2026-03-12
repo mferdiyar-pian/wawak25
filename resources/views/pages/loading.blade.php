@@ -18,7 +18,7 @@
 
   {{-- Terminal box --}}
   <div class="terminal-box">
-    <div class="terminal-title">pianpunkk</div>
+    <div class="terminal-title">Wawak Day</div>
     <div class="terminal-prompt">&gt; READY! <span class="cursor">_</span></div>
     <div class="progress-wrap">
       <div class="progress-bar" id="bar"></div>

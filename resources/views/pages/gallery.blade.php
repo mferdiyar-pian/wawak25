@@ -28,7 +28,7 @@
 {{-- ══ PHOTOBOX SCREEN ══ --}}
 <div id="panel-photo">
   <div class="screen-wrap">
-    <div class="screen-label">DOT MATRIX WITH STEREO SOUND</div>
+    <div class="screen-label">IKAN HIU MAKAN TOMAT ILOVE SOMAT</div>
     <div class="screen photobox-screen" id="photobox-screen">
 
       {{-- Idle state --}}
