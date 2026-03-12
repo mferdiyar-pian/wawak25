@@ -3,14 +3,28 @@
 
 @section('content')
 
-<body style="
-  min-height:100vh;
-  background:url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-"></body>
+<style>
+  body {
+    background: url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed !important;
+  }
+  /* Overlay gelap HANYA di belakang konsol — pakai pseudo-element di .wrap */
+  .wrap {
+    position: relative;
+  }
+  .wrap::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Konsol di atas overlay */
+  .console {
+    position: relative;
+    z-index: 1;
+  }
+</style>
 
 {{-- Top bar --}}
 <div class="topbar">
@@ -70,14 +84,15 @@
     <div class="screen clip-screen">
       <div class="clip-title">Clip Dump</div>
 
-      @foreach(['clip1.mp4', 'clip2.mp4'] as $clip)
-      <div class="clip-card">
-        <video class="clip-video" controls preload="metadata">
-          <source src="{{ asset('videos/1.mp4' . $clip) }}" type="videos/1.mp4">
-        </video>
-        <div class="clip-label">Clip Dump</div>
-      </div>
-      @endforeach
+@foreach(['1.mp4'] as $clip)
+  <div class="clip-card">
+    <video class="clip-video" controls preload="metadata" width="100%">
+      <source src="{{ asset('videos/' . $clip) }}" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+    <div class="clip-label">{{ $clip }}</div>
+  </div>
+@endforeach
 
     </div>
     <div class="battery-row">

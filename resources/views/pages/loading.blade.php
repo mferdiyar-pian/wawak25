@@ -3,14 +3,28 @@
 
 @section('content')
 
-<body style="
-  min-height:100vh;
-  background:url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-"></body>
+<style>
+  body {
+    background: url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed !important;
+  }
+  /* Overlay gelap HANYA di belakang konsol — pakai pseudo-element di .wrap */
+  .wrap {
+    position: relative;
+  }
+  .wrap::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Konsol di atas overlay */
+  .console {
+    position: relative;
+    z-index: 1;
+  }
+</style>
 
 <div class="loading-screen">
   {{-- Stars background --}}

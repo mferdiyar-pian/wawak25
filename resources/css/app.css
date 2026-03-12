@@ -11,6 +11,10 @@
   padding: 0;
 }
 
+body::before {
+  background: rgba(0, 0, 0, 0.55); /* overlay hitam 55% */
+}
+
 body {
   min-height: 100vh;
   background: linear-gradient(135deg, #6b72ff 0%, #5b62ff 50%, #8b6fff 100%);

@@ -3,25 +3,39 @@
 
 @section('content')
 
-<body style="
-  min-height:100vh;
-  background:url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-"></body>
+<style>
+  body {
+    background: url('{{ asset('images/3.jpeg') }}') center center / cover no-repeat fixed !important;
+  }
+  /* Overlay gelap HANYA di belakang konsol — pakai pseudo-element di .wrap */
+  .wrap {
+    position: relative;
+  }
+  .wrap::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Konsol di atas overlay */
+  .console {
+    position: relative;
+    z-index: 1;
+  }
+</style>
 
 {{-- Top bar --}}
 <div class="topbar">
   <div class="power-dot"></div>
   <span class="power-label">POWER</span>
-  <span class="brand-name">HEYTML-BOY</span>
+  <span class="brand-name">PIANPUNKK</span>
 </div>
 
 {{-- Screen --}}
 <div class="screen-wrap">
-  <div class="screen-label">DOT MATRIX WITH STEREO SOUND</div>
+  <div class="screen-label">DIKAN HIU MAKAN TOMAT ILOVE SOMAT</div>
   <div class="screen">
     <div class="screen-content">
       <div class="bday-title">Happy<br>Birthday!</div>
@@ -120,7 +134,6 @@ function spawnRipple(dir) {
   r.addEventListener('animationend', () => r.remove());
 }
 
-// D-pad click zones
 document.getElementById('dpad').addEventListener('click', e => {
   const rect = e.currentTarget.getBoundingClientRect();
   const x = e.clientX - rect.left, y = e.clientY - rect.top;
@@ -132,7 +145,6 @@ document.getElementById('dpad').addEventListener('click', e => {
   else if (row===1&&col===2) dpadRight();
 });
 
-// Swipe on d-pad
 let tx=0, ty=0;
 document.getElementById('dpad').addEventListener('touchstart', e => { tx=e.touches[0].clientX; ty=e.touches[0].clientY; }, {passive:true});
 document.getElementById('dpad').addEventListener('touchend',   e => {
