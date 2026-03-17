@@ -1,9 +1,3 @@
-<p align="center">
-  <a href="https://hbdwawak25.gt.tc/" target="_blank">
-    <img width="400" alt="HBD WAWAK 25" src="https://via.placeholder.com/400x150?text=HBD+WAWAK+25">
-  </a>
-</p>
-
 <h1 align="center">🎉 HBD WAWAK 25 🎉</h1>
 
 <p align="center">
@@ -54,24 +48,3 @@ Project ini dibangun menggunakan **Laravel Framework**, sehingga memiliki strukt
 </p>
 
 ---
-
-## 📚 Cara Menjalankan Project (Local)
-
-```bash
-# Clone repository
-git clone https://github.com/username/repository.git
-
-# Masuk ke folder project
-cd repository
-
-# Install dependency
-composer install
-
-# Copy file env
-cp .env.example .env
-
-# Generate key
-php artisan key:generate
-
-# Jalankan server
-php artisan serve
